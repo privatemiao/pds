@@ -1,12 +1,19 @@
 {
-	"id": "-1",
-	"title": "",
-	"nodes": {
-		"id": "file",
-		"title": "File",
-		"nodes": [{
-			"id": "photo",
-			"title": "Photo"
+	"id" : "-1",
+	"title" : "",
+	"nodes" : [{
+		"id" : "file",
+		"title" : "File",
+		"nodes" : [{
+			"id" : "file.photo",
+			"title" : "Photo",
+			"nodes" : [{
+				"id" : "file.photo.upload",
+				"title" : "Upload"
+			}, {
+				"id" : "file.photo.view",
+				"title" : "View"
+			}]
 		}]
-	}
+	}]
 }

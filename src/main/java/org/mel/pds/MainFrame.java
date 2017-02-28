@@ -62,9 +62,13 @@ public class MainFrame extends JFrame {
 	private JMenu createJMenu(Node node) {
 		JMenu menu = new JMenu(node.getTitle());
 		for (Node subNode : node.getNodes()) {
-			JMenuItem menuItem = new JMenuItem(subNode.getTitle());
-			menuItem.setActionCommand(subNode.getId());
-			menuItem.addActionListener(menuListener);
+			JMenuItem menuItem = null;
+			if (subNode.getNodes().size() == 0){
+				menuItem = new JMenuItem(subNode.getTitle());
+				menuItem.addActionListener(menuListener);
+			}else{
+				menuItem =  createJMenu(subNode);
+			}
 			menu.add(menuItem);
 		}
 		return menu;
