@@ -3,14 +3,12 @@ package org.mel.pds;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.mel.pds.photo.upload.Model;
-import org.mel.pds.photo.upload.View;
+import javax.swing.JPanel;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -51,31 +49,22 @@ public class Service {
 	}
 
 	private void prepareMenuListener() {
-		menuListeners.put("photo.upload", new MenuActionListener() {
+		menuListeners.put("file.photo.upload", new MenuActionListener() {
 
 			@Override
-			public void doProcess(ActionEvent e) {
+			public void doProcess(ActionEvent event) {
 				try {
-					View view = (View) Class.forName("org.mel.pds.photo.upload.View").newInstance();
-					Model model = (Model) Class.forName("org.mel.pds.photo.upload.Model").newInstance();
-					Object controller = Class.forName("org.mel.pds.photo.upload.Controller").getConstructor(View.class, Model.class).newInstance(view, model);
-					mainFrame.setContentPane(view);
+					Object newInstance = Class.forName("org.mel.pds.photo.upload.UploadView").newInstance();
+					Object newInstance2 = Class.forName("org.mel.pds.photo.upload.UploadModel").newInstance();
+					Class.forName("org.mel.pds.photo.upload.UploadController")
+							.getConstructor(Class.forName("org.mel.pds.photo.upload.UploadView"),
+									Class.forName("org.mel.pds.photo.upload.UploadModel"))
+							.newInstance(newInstance, newInstance2);
+					mainFrame.setContentPane((JPanel) newInstance);
 					mainFrame.repaint();
-				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IllegalArgumentException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (InvocationTargetException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (NoSuchMethodException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (SecurityException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+					mainFrame.showMessage(e.getMessage());
 				}
 			}
 		});

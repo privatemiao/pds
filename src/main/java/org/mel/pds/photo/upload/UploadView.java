@@ -1,14 +1,14 @@
 package org.mel.pds.photo.upload;
 
-import java.awt.Color;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
-public class View extends JPanel {
+import org.mel.pds.commons.AbstractView;
+
+public class UploadView extends AbstractView {
 
 	/**
 	 * 
@@ -17,11 +17,10 @@ public class View extends JPanel {
 
 	private JButton btn;
 
-	public View() {
+	public UploadView() {
 		add(new JLabel("Photo.Upload"));
 		btn = new JButton("PressMe");
 		setOpaque(true);
-		setBackground(Color.BLACK);
 	}
 
 	public void setBtnListener(ActionListener listener) {

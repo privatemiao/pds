@@ -66,6 +66,7 @@ public class MainFrame extends JFrame {
 			if (subNode.getNodes().size() == 0){
 				menuItem = new JMenuItem(subNode.getTitle());
 				menuItem.addActionListener(menuListener);
+				menuItem.setActionCommand(subNode.getId());
 			}else{
 				menuItem =  createJMenu(subNode);
 			}
