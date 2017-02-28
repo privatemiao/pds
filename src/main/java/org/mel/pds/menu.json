@@ -1,0 +1,12 @@
+{
+	"id": "-1",
+	"title": "",
+	"nodes": {
+		"id": "file",
+		"title": "File",
+		"nodes": [{
+			"id": "photo",
+			"title": "Photo"
+		}]
+	}
+}
