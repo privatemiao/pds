@@ -1,6 +1,5 @@
 package org.mel.pds;
 
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -13,6 +12,8 @@ import javax.swing.JOptionPane;
 
 import org.apache.commons.lang3.StringUtils;
 import org.mel.pds.Node.Module;
+import org.mel.pds.commons.AbstractModel;
+import org.mel.pds.commons.AbstractView;
 import org.springframework.util.CollectionUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -68,14 +69,15 @@ public class Service {
 				try {
 					Class<?> modelClass = Class.forName(module.getModel());
 					Class<?> viewClass = Class.forName(module.getView());
-					Container container = (Container) viewClass.newInstance();
+					AbstractView viewInstance = (AbstractView) viewClass.newInstance();
+					AbstractModel modelInstance = (AbstractModel) Class.forName(module.getModel()).newInstance();
 					if (modelClass == null) {
-						Class.forName(module.getController()).getConstructor(viewClass).newInstance(container);
+						Class.forName(module.getController()).getConstructor(viewClass).newInstance(viewInstance);
 					} else {
-						Class.forName(module.getController()).getConstructor(viewClass, modelClass).newInstance(container, modelClass.newInstance());
+						Class.forName(module.getController()).getConstructor(viewClass, modelClass).newInstance(viewInstance, modelInstance);
 					}
-					mainFrame.setContentPane(container);
-					mainFrame.repaint();
+					mainFrame.setContentPane(viewInstance);
+					mainFrame.setVisible(true);
 				} catch (Exception ex) {
 					ex.printStackTrace();
 				}

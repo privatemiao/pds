@@ -5,6 +5,14 @@
 		"id" : "file",
 		"title" : "File",
 		"nodes" : [{
+			"id" : "file.demo",
+			"title" : "Demo",
+			"module" : {
+				"view" : "org.mel.pds.demo.DemoView",
+				"model" : "org.mel.pds.demo.DemoModel",
+				"controller" : "org.mel.pds.demo.DemoController"
+			}
+		}, {
 			"id" : "file.photo",
 			"title" : "Photo",
 			"nodes" : [{

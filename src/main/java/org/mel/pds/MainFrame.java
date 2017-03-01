@@ -45,7 +45,7 @@ public class MainFrame extends JFrame {
 	}
 
 	private Container createContentPane() {
-		JPanel panel = new JPanel(new BorderLayout());
+		JPanel panel = new JPanel();
 		panel.setOpaque(true);
 		panel.setBackground(Color.WHITE);
 		return panel;
