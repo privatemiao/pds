@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 import org.apache.commons.lang3.StringUtils;
 import org.mel.pds.Node.Module;
 import org.springframework.util.CollectionUtils;
@@ -20,6 +22,7 @@ public class Service {
 	private List<Node> nodes = null;
 	private Map<String, Node> nodeIndex = new HashMap<>();
 	private MainFrame mainFrame = null;
+	private Map<String, ActionListener> menuListeners = new HashMap<>();
 
 	Service(MainFrame mainFrame) {
 		this.mainFrame = mainFrame;
@@ -39,6 +42,7 @@ public class Service {
 			e.printStackTrace();
 		}
 
+		prepareMenuListener();
 		this.mainFrame.setNodes(nodes);
 		this.mainFrame.setMenuListener(new ActionListener() {
 
@@ -46,13 +50,18 @@ public class Service {
 			public void actionPerformed(ActionEvent event) {
 				Node node = nodeIndex.get(event.getActionCommand());
 				if (StringUtils.isEmpty(event.getActionCommand()) || node == null) {
-					mainFrame.showMessage("This operation not pair yet!");
+					mainFrame.showMessage("This function not ready yet!");
 					return;
 				}
 
 				Module module = node.getModule();
 				if (module == null) {
-					mainFrame.showMessage("This operation not ready yet!");
+					ActionListener menuActionListener = menuListeners.get(event.getActionCommand());
+					if (menuActionListener == null) {
+						mainFrame.showMessage("This function not ready yet!");
+					} else {
+						menuActionListener.actionPerformed(event);
+					}
 					return;
 				}
 
@@ -73,6 +82,20 @@ public class Service {
 			}
 		});
 		this.mainFrame.setUpUI();
+	}
+
+	private void prepareMenuListener() {
+		menuListeners.put("file.exit", new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int result = JOptionPane.showConfirmDialog(mainFrame, "Exit?");
+				if (result == JOptionPane.OK_OPTION) {
+					System.exit(1);
+				}
+			}
+
+		});
 	}
 
 	private void indexNodes() {

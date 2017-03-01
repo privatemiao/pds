@@ -22,6 +22,9 @@
 		}, {
 			"id" : "file.contact",
 			"title" : "Contact"
+		}, {
+			"id" : "file.exit",
+			"title" : "Exit"
 		}]
 	}]
 }
