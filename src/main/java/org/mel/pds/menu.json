@@ -9,7 +9,12 @@
 			"title" : "Photo",
 			"nodes" : [{
 				"id" : "file.photo.upload",
-				"title" : "Upload"
+				"title" : "Upload",
+				"module" : {
+					"model" : "org.mel.pds.photo.upload.UploadModel",
+					"view" : "org.mel.pds.photo.upload.UploadView",
+					"controller" : "org.mel.pds.photo.upload.UploadController"
+				}
 			}, {
 				"id" : "file.photo.view",
 				"title" : "View"

@@ -1,5 +1,6 @@
 package org.mel.pds;
 
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -7,8 +8,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.swing.JPanel;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -54,13 +53,8 @@ public class Service {
 			@Override
 			public void doProcess(ActionEvent event) {
 				try {
-					Object newInstance = Class.forName("org.mel.pds.photo.upload.UploadView").newInstance();
-					Object newInstance2 = Class.forName("org.mel.pds.photo.upload.UploadModel").newInstance();
-					Class.forName("org.mel.pds.photo.upload.UploadController")
-							.getConstructor(Class.forName("org.mel.pds.photo.upload.UploadView"),
-									Class.forName("org.mel.pds.photo.upload.UploadModel"))
-							.newInstance(newInstance, newInstance2);
-					mainFrame.setContentPane((JPanel) newInstance);
+					Container c = (Container) Class.forName("org.mel.pds.photo.upload.UploadView").newInstance();
+					mainFrame.setContentPane(c);
 					mainFrame.repaint();
 				} catch (Exception e) {
 					e.printStackTrace();
