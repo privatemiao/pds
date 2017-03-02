@@ -31,4 +31,9 @@ public class UploadView extends AbstractView {
 		JOptionPane.showMessageDialog(this, message);
 	}
 
+	@Override
+	public String getTitle() {
+		return "照片 > 上传";
+	}
+
 }

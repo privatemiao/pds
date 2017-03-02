@@ -67,16 +67,22 @@ public class Service {
 				}
 
 				try {
-					Class<?> modelClass = Class.forName(module.getModel());
-					Class<?> viewClass = Class.forName(module.getView());
-					AbstractView viewInstance = (AbstractView) viewClass.newInstance();
-					AbstractModel modelInstance = (AbstractModel) Class.forName(module.getModel()).newInstance();
-					if (modelClass == null) {
+					Class<?> modelClass, viewClass;
+					AbstractView viewInstance;
+					AbstractModel modelInstance;
+
+					viewClass = Class.forName(module.getView());
+					viewInstance = (AbstractView) viewClass.newInstance();
+
+					if (StringUtils.isBlank(module.getModel())) {
 						Class.forName(module.getController()).getConstructor(viewClass).newInstance(viewInstance);
 					} else {
+						modelClass = Class.forName(module.getModel());
+						modelInstance = (AbstractModel) Class.forName(module.getModel()).newInstance();
 						Class.forName(module.getController()).getConstructor(viewClass, modelClass).newInstance(viewInstance, modelInstance);
 					}
 					mainFrame.setContentPane(viewInstance);
+					mainFrame.setTitle(viewInstance.getTitle());
 					mainFrame.setVisible(true);
 				} catch (Exception ex) {
 					ex.printStackTrace();

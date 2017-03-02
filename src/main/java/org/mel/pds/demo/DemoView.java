@@ -1,14 +1,16 @@
 package org.mel.pds.demo;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import org.mel.pds.commons.AbstractView;
+
+import net.miginfocom.swing.MigLayout;
 
 public class DemoView extends AbstractView {
 
@@ -17,29 +19,33 @@ public class DemoView extends AbstractView {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	protected JTextField firstnameField = new JTextField(10);
+	protected JTextField lastnameField = new JTextField(10);
+	protected JTable table = new JTable();
+	
+	protected JButton btn = new JButton("Status");
+	
 	public DemoView() {
-		setLayout(new GridBagLayout());
+		setLayout(new MigLayout("", "[]10[]", "[]20[]"));
 		setBackground(Color.WHITE);
 
-		GridBagConstraints constraints = new GridBagConstraints();
-		constraints.fill = GridBagConstraints.NONE;
-		constraints.anchor = GridBagConstraints.WEST;
-		constraints.weightx = 3;
-		constraints.weighty = 4;
+		add(new JLabel("Firstname"));
+		add(firstnameField, "growx, wrap");
+		add(new JLabel("Lastname"));
+		add(lastnameField, "growx, wrap");
 
-		add(new JLabel("Firstname"), constraints, 0, 0, 1, 1);
-		add(new JTextField(10), constraints, 1, 0, 1, 1);
-		add(new JLabel("Lastname"), constraints, 0, 1, 1, 1);
-		add(new JTextField(10), constraints, 1, 1, 1, 1);
+		table.setFillsViewportHeight(true);
+		JScrollPane scrollPane = new JScrollPane(table);
+		add(scrollPane, "span, growx");
 		
+		add(btn);
+
 	}
 
-	public void add(Component c, GridBagConstraints constraints, int x, int y, int w, int h) {
-		constraints.gridx = x;
-		constraints.gridy = y;
-		constraints.gridwidth = w;
-		constraints.gridheight = h;
-		add(c, constraints);
+	@Override
+	public String getTitle() {
+		return "Demo";
 	}
+
 
 }
