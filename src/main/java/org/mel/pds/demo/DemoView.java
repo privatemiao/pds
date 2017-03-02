@@ -26,7 +26,7 @@ public class DemoView extends AbstractView {
 	protected JButton btn = new JButton("Status");
 	
 	public DemoView() {
-		setLayout(new MigLayout("", "[]10[]", "[]20[]"));
+		setLayout(new MigLayout("", "[]10[]", "[]10[]"));
 		setBackground(Color.WHITE);
 
 		add(new JLabel("Firstname"));
@@ -46,6 +46,5 @@ public class DemoView extends AbstractView {
 	public String getTitle() {
 		return "Demo";
 	}
-
 
 }

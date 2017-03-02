@@ -55,7 +55,7 @@ public class MainFrame extends JFrame {
 
 		setSize(DIMENSION);
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
 		if (SystemTray.isSupported()) {
 			createTray();
