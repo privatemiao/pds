@@ -39,21 +39,23 @@ public class DemoController extends AbstractController {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				textFieldChange(e);
+				textFieldChanged(e);
 			}
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
-				textFieldChange(e);
+				textFieldChanged(e);
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				textFieldChange(e);
+				textFieldChanged(e);
 			}
 
-			private void textFieldChange(DocumentEvent e) {
-
+			long lasttime = System.currentTimeMillis();
+			
+			private void textFieldChanged(DocumentEvent e) {
+				
 			}
 		});
 	}
