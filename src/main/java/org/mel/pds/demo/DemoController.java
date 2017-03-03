@@ -34,12 +34,21 @@ public class DemoController extends AbstractController {
 			}
 		});
 
-		view.firstnameField.getDocument().addDocumentListener(new DeferedDocumentListener(2000, new ActionListener() {
-			
+		view.firstnameField.getDocument().addDocumentListener(new DeferedDocumentListener(new ActionListener() {
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-				view.firstnameField.setFont(new Font(view.firstnameField.getFont().getFontName(), Font.BOLD ,view.firstnameField.getFont().getSize()));
+				model.getPerson().setFirstname(view.firstnameField.getText());
+				view.firstnameField.setFont(view.firstnameField.getFont().deriveFont(model.getPerson().getFirstname().equals(model.getOriginalPerson().getFirstname()) ? Font.PLAIN : Font.ITALIC));
+			}
+		}));
+
+		view.lastnameField.getDocument().addDocumentListener(new DeferedDocumentListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				model.getPerson().setLastname(view.lastnameField.getText());
+				view.lastnameField.setFont(view.lastnameField.getFont().deriveFont(model.getPerson().getLastname().equals(model.getOriginalPerson().getLastname()) ? Font.PLAIN : Font.ITALIC));
 			}
 		}));
 	}
@@ -102,6 +111,5 @@ public class DemoController extends AbstractController {
 			}
 		});
 	}
-	
 
 }

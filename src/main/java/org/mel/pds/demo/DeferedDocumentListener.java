@@ -10,8 +10,20 @@ public class DeferedDocumentListener implements DocumentListener {
 	private Timer timer;
 
 	public DeferedDocumentListener(int delay, ActionListener listener) {
+		init(delay, listener);
+	}
+
+	public DeferedDocumentListener(ActionListener listener) {
+		init(listener);
+	}
+
+	private void init(int delay, ActionListener listener) {
 		timer = new Timer(delay, listener);
 		timer.setRepeats(false);
+	}
+
+	private void init(ActionListener listener) {
+		init(2000, listener);
 	}
 
 	@Override
