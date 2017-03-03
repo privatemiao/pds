@@ -3,8 +3,6 @@ package org.mel.pds.demo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
@@ -35,29 +33,13 @@ public class DemoController extends AbstractController {
 			}
 		});
 
-		view.firstnameField.getDocument().addDocumentListener(new DocumentListener() {
-
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				textFieldChanged(e);
-			}
-
-			@Override
-			public void insertUpdate(DocumentEvent e) {
-				textFieldChanged(e);
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				textFieldChanged(e);
-			}
-
-			long lasttime = System.currentTimeMillis();
+		view.firstnameField.getDocument().addDocumentListener(new DeferedDocumentListener(2000, new ActionListener() {
 			
-			private void textFieldChanged(DocumentEvent e) {
-				
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			}
-		});
+		}));
 	}
 
 	private void fetchDataFromDB() {
@@ -118,5 +100,6 @@ public class DemoController extends AbstractController {
 			}
 		});
 	}
+	
 
 }
