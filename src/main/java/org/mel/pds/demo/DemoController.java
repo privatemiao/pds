@@ -1,5 +1,6 @@
 package org.mel.pds.demo;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -38,6 +39,7 @@ public class DemoController extends AbstractController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+				view.firstnameField.setFont(new Font(view.firstnameField.getFont().getFontName(), Font.BOLD ,view.firstnameField.getFont().getSize()));
 			}
 		}));
 	}
