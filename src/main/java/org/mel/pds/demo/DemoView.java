@@ -21,9 +21,12 @@ public class DemoView extends AbstractView {
 
 	protected CharacterTextField firstnameField = new CharacterTextField(10);
 	protected CharacterTextField lastnameField = new CharacterTextField(10);
+	
 	protected JTable table = new JTable();
 	
 	protected JButton btn = new JButton("Status");
+	
+	
 	
 	public DemoView() {
 		setLayout(new MigLayout("", "[]10[]", "[]10[]"));
