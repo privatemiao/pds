@@ -39,10 +39,6 @@ public class DemoView extends AbstractView {
 		add(scrollPane, "span, growx");
 		
 		add(btn);
-		
-		firstnameField.validateError();
-		lastnameField.validateWarning();
-
 	}
 
 	@Override
