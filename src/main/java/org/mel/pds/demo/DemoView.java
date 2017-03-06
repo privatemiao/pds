@@ -6,9 +6,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 
 import org.mel.pds.commons.AbstractView;
+import org.mel.pds.component.CharacterTextField;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -19,8 +19,8 @@ public class DemoView extends AbstractView {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected JTextField firstnameField = new JTextField(10);
-	protected JTextField lastnameField = new JTextField(10);
+	protected CharacterTextField firstnameField = new CharacterTextField(10);
+	protected CharacterTextField lastnameField = new CharacterTextField(10);
 	protected JTable table = new JTable();
 	
 	protected JButton btn = new JButton("Status");
@@ -39,6 +39,9 @@ public class DemoView extends AbstractView {
 		add(scrollPane, "span, growx");
 		
 		add(btn);
+		
+		firstnameField.validateError();
+		lastnameField.validateWarning();
 
 	}
 

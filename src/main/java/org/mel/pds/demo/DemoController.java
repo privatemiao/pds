@@ -55,8 +55,10 @@ public class DemoController extends AbstractController {
 
 	private void fetchDataFromDB() {
 		Person person = new Person("Mel", "Liu");
-		person.addAddress(new Address("江苏省", "苏州市", "吴中区", "红树湾14-2802"));
-		person.addAddress(new Address("江苏省", "苏州市", "沧浪区", "保兴里1-302"));
+//		person.addAddress(new Address("江苏省", "苏州市", "吴中区", "红树湾14-2802"));
+//		person.addAddress(new Address("江苏省", "苏州市", "沧浪区", "保兴里1-302"));
+		person.addAddress(new Address("江苏省", "苏州市", "**区", "***14-2802"));
+		person.addAddress(new Address("江苏省", "苏州市", "**区", "***1-302"));
 		model.setPerson(person);
 	}
 
